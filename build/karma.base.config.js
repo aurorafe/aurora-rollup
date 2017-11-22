@@ -13,7 +13,7 @@ module.exports = {
 
   // list of files / patterns to load in the browser
   files: [
-    'src/index.js',
+    'src/**/*.js',
     'test/**/*.js'
   ],
 
@@ -24,8 +24,7 @@ module.exports = {
   // preprocess matching files before serving them to the browser
   // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
   preprocessors: {
-    'test/index.js': ['babel'],
-    'src/index.js': ['rollup']
+    'src/**/*.js': ['rollup', 'coverage']
   },
 
   rollupPreprocessor: {
@@ -43,7 +42,10 @@ module.exports = {
   reporters: ['progress', 'coverage'],
   coverageReporter: {
     type : 'html',
-    dir : 'coverage/'
+    dir : 'coverage/',
+    instrumenterOptions: {
+      istanbul: { noCompact: true }
+    }
   },
 
   // web server port
