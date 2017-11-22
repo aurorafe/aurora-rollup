@@ -10,10 +10,29 @@ module.exports = function (config) {
     reporters: ['mocha', 'coverage'],
     logLevel: config.LOG_INFO,
     coverageReporter: {
-      type : 'html',
-      dir : 'coverage/'
+      type: 'html',
+      dir: 'coverage/',
+      reporters: [
+        {type: 'lcov', subdir: '.'},
+        {type: 'text-summary', subdir: '.'},
+      ]
     },
     singleRun: true
   })
-  config.set(options)
+  options.rollupPreprocessor.sourcemap = 'inline';
+  const plugins = options.rollupPreprocessor.plugins;
+  const idx = plugins.findIndex(plugin => {
+    return plugin.name === 'babel';
+  });
+  if (idx >= 0) {
+    const babel = require('rollup-plugin-babel');
+    plugins.splice(idx, 1, babel({
+      plugins: [['istanbul', {
+        exclude: [
+          'test/**/*.js'
+        ]
+      }]]
+    }));
+  }
+  config.set(options);
 }

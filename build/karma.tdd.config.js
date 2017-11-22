@@ -9,6 +9,7 @@ module.exports = function (config) {
   config.set(Object.assign(base, {
     browsers: ['Chrome'],
     logLevel: config.LOG_INFO,
-    reporters: ['mocha']
+    reporters: ['mocha'],
+    singleRun: true
   }))
 }

@@ -22,9 +22,9 @@
   "scripts": {
     "dev": "rollup -wm -c build/rollup-dev-config.js",
     "build": "node build/rollup-prod-config.js",
-    "karma.test": "karma start build/karma.test.config.js --cov",
-    "karma.cover": "karma start build/karma.cover.config.js --cov",
-    "karma.tdd": "karma start build/karma.tdd.config.js --cov"
+    "karma.test": "karma start build/karma.test.config.js",
+    "karma.cover": "karma start build/karma.cover.config.js",
+    "karma.tdd": "karma start build/karma.tdd.config.js"
   },
   "dependencies": {
   },

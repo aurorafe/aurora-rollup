@@ -25,7 +25,7 @@ const genConfig = (opts) => {
       file: opts.file,
       format: opts.format,
       banner,
-      name: 'SMap'
+      name: 'Observable'
     }
   }
   if (opts.env) {
