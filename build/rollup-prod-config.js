@@ -9,8 +9,10 @@ if (!fs.existsSync('dist')) {
   fs.mkdirSync('dist')
 }
 
-build(Object.keys(configs).map(key => configs[key]))
-
+/**
+ * build
+ * @param builds
+ */
 function build (builds) {
   let built = 0
   const total = builds.length
@@ -25,6 +27,12 @@ function build (builds) {
   next()
 }
 
+/**
+ * builder
+ * @param input
+ * @param output
+ * @returns {Promise.<TResult>}
+ */
 function buildEntry ({ input, output }) {
   const isProd = /min\.js$/.test(output.file)
   return rollup.rollup(input)
@@ -46,6 +54,13 @@ function buildEntry ({ input, output }) {
     })
 }
 
+/**
+ * write file to disk
+ * @param dest
+ * @param code
+ * @param zip
+ * @returns {Promise}
+ */
 function write (dest, code, zip) {
   return new Promise((resolve, reject) => {
     function report (extra) {
@@ -66,14 +81,30 @@ function write (dest, code, zip) {
   })
 }
 
+/**
+ * get file size
+ * @param code
+ * @returns {string}
+ */
 function getSize (code) {
   return (code.length / 1024).toFixed(2) + 'kb'
 }
 
+/**
+ * print error
+ * @param e
+ */
 function logError (e) {
   console.log(e)
 }
 
+/**
+ * add message color
+ * @param str
+ * @returns {string}
+ */
 function blue (str) {
   return '\x1b[1m\x1b[34m' + str + '\x1b[39m\x1b[22m'
 }
+
+build(Object.keys(configs).map(key => configs[key]))
