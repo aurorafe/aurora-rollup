@@ -1,24 +1,18 @@
-# trajMiner
-轨迹数据挖掘网络平台
+# rollup-base-builder
 
-## 主要技术
+> rollup打包配置，包含es6转换，代码合并压缩，单元测试行为测试
 
-- 前端：vuejs， element-ui组件
-- 后台：nodejs
-- 语言：html，css3，javascript （es2015）
-
-## 环境
-
-- node：需要安装node
-- git：git客户端
-- 浏览器： 谷歌
-
-## 运行
+# Usage
 
 ```bash
-git clone https://gitee.com/aurorafe/trajMiner.git
-npm install
-npm run dev
+npm i
 npm run build
+npm run karma.test
+npm run karma.cover
+npm run karma.tdd
 ```
+
+# Develop
+
+Based on rollup, karma and uglify
 
